@@ -43,7 +43,7 @@ export function setGreeting(message: string): void {
 export function addProduct(name: string, description: string, brand: string, image: string, price: i32):void {
   let product_owner = Context.sender;
   let product_id = products.length + 1;
-  let product = new Product(product_id, product_owner, name, description, brand, image, price, true);
+  let product = new Product(product_id, product_owner, name, description, brand, image, price, false);
   let index = products.push(product);
   logging.log(product);
 }
@@ -71,6 +71,59 @@ export function buyProduct(_id: i32, _newOwner: string):bool {
         price = price + price * 10 / 100;
         
       let updatedProduct = new Product(id, _newOwner, name, description, brand, image, price, true);
+      products.replace(i, updatedProduct);
+      return true;
+    }
+  }
+  return false;
+}
+
+export function getProductOwner(_id: i32):string {
+  let owner:string = '';
+  for(let i = 0; i < products.length; i ++) {
+    let id = products[i].id;
+    if(id == _id) {
+      owner = products[i].owner;      
+    }
+  }
+  return owner;
+}
+
+export function sellProduct(_id: i32, _owner: string):bool {
+  for(let i = 0; i < products.length; i ++) {
+    let id = products[i].id;
+    let forSale = products[i].forSale;
+
+    if(id == _id && !forSale) {
+      let name = products[i].name;
+      let description = products[i].description;
+      let brand = products[i].brand;
+      let image = products[i].image;
+      let price = products[i].price;
+          price = price + price * 10 / 100;
+        
+      let updatedProduct = new Product(id, _owner, name, description, brand, image, price, true);
+      products.replace(i, updatedProduct);
+      return true;
+    }
+  }
+  return false;
+}
+
+export function cancelSellProduct(_id: i32, _owner:string):bool {
+  for(let i = 0; i < products.length; i ++) {
+    let id = products[i].id;
+    let forSale = products[i].forSale;
+
+    if(id == _id && forSale) {
+      let name = products[i].name;
+      let description = products[i].description;
+      let brand = products[i].brand;
+      let image = products[i].image;
+      let price = products[i].price;
+          price = price - price * 10 / 100;
+        
+      let updatedProduct = new Product(id, _owner, name, description, brand, image, price, false);
       products.replace(i, updatedProduct);
       return true;
     }
