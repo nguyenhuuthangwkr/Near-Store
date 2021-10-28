@@ -97,7 +97,7 @@ async function buyProduct(productId, receiverAccount, amount) {
     let myAccount = window.accountId;
     //console.log(myAccount);
     let result = await sendToken(myAccount, receiverAccount, amount);
-    console.log(result);
+    console.log("result: " + result);
     let transactionStatus = result.status.SuccessValue;
 
     if (transactionStatus === '') {
