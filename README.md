@@ -5,7 +5,9 @@ The store built on Near protocol
 
 Demo: https://1234-red-wasp-3dayp0qz.ws-us18.gitpod.io/
 
-Slide: https://github.com/nguyenhuuthangwkr/Near-Store/blob/main/docs/Near%20Store%20slide.ppt
+Gitpod: 
+
+Slide: https://github.com/nguyenhuuthangwkr/Near-Store/blob/main/docs/Near%20Store%20slide%20updated.ppt
 
 Quick Start
 ===========
