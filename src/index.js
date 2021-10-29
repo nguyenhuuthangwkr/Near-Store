@@ -74,22 +74,49 @@ async function addProduct() {
     price = parseInt(price);
 
     try {
-        await window.contract.addProduct({
+        let isSuccess = await window.contract.addProduct({
             name: name,
             description: description,
             brand: brand,
             image: image,
             price: price
         });
+
+        if (isSuccess) {
+            //console.log("product added");
+            Swal.fire({
+                title: 'DONE!',
+                text: 'Product Added!',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+            });
+        } else {
+            //alert("ERROR when adding product! Please try again...");
+            Swal.fire({
+                title: 'ERROR!',
+                text: 'ERROR when adding product! Please try again...!',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            });
+        }
     } catch (e) {
-        alert(
-            'ERROR: ' + e
-        )
+        Swal.fire({
+            title: 'ERROR!',
+            text: 'ERROR: ' + e,
+            icon: 'error',
+            confirmButtonText: 'Cool'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.reload();
+            }
+        });
         throw e
     } finally {
-        alert("Product added!");
-        location.reload();
-        //console.log("product added");
+        //location.reload();
     }
 }
 
@@ -104,14 +131,41 @@ async function buyProduct(productId, receiverAccount, amount) {
         //console.log("status: " + transactionStatus);
         let isSucceed = await contract.buyProduct({ _id: parseInt(productId), _newOwner: myAccount });
         if (isSucceed) {
-            alert("SUCCEED TO BUY PRODUCT!");
-            //refresh the page
-            location.reload();
+            //alert("SUCCEED TO BUY PRODUCT!");
+            Swal.fire({
+                title: 'SUCCESS!',
+                text: 'SUCCEED TO BUY PRODUCT!',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            });
         } else {
-            alert("ERROR!");
+            //alert("ERROR!");
+            Swal.fire({
+                title: 'ERROR!',
+                text: 'ERROR when buying product! Please try again...!',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            });
         }
     } else {
-        console.log("ERROR: " + result);
+        Swal.fire({
+            title: 'ERROR!',
+            text: 'ERROR: ' + result,
+            icon: 'error',
+            confirmButtonText: 'Cool'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.reload();
+            }
+        });
     }
 }
 
@@ -121,10 +175,29 @@ async function sellProduct(id) {
     if (myAccount === productOwner) {
         let isSellSuccess = await contract.sellProduct({ _id: id, _owner: myAccount });
         if (isSellSuccess) {
-            alert("PRODUCT IS SELLING...");
-            location.reload();
+            //alert("PRODUCT IS SELLING...");
+            Swal.fire({
+                title: 'SUCCESS!',
+                text: 'PRODUCT IS SELLING...!',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            });
         } else {
-            alert("ERROR SELLING PRODUCT");
+            //alert("ERROR SELLING PRODUCT");
+            Swal.fire({
+                title: 'ERROR!',
+                text: 'ERROR SELLING PRODUCT!',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            });
         }
     }
 }
@@ -135,10 +208,29 @@ async function cancelSellProduct(id) {
     if (myAccount === productOwner) {
         let isSellSuccess = await contract.cancelSellProduct({ _id: id, _owner: myAccount });
         if (isSellSuccess) {
-            alert("CANCELED!");
-            location.reload();
+            //alert("CANCELED!");
+            Swal.fire({
+                title: 'SUCCESS!',
+                text: 'PRODUCT SELLING IS CANCELED!',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            });
         } else {
-            alert("ERROR CANCELD SELL PRODUCT");
+            //alert("ERROR CANCELD SELL PRODUCT");
+            Swal.fire({
+                title: 'ERROR!',
+                text: 'ERROR WHEN CANCEL SELLING PRODUCT!',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            });
         }
     }
 }

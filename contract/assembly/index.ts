@@ -17,12 +17,18 @@ import { Product, products} from './model';
 
 const INIT_ID = 0;
 
-export function addProduct(name: string, description: string, brand: string, image: string, price: i32):void {
+export function addProduct(name: string, description: string, brand: string, image: string, price: i32):bool {
   let product_owner = Context.sender;
   let product_id = products.length + 1;
   let product = new Product(product_id, product_owner, name, description, brand, image, price, false);
   let index = products.push(product);
-  logging.log(product);
+  
+  if(index) {
+    return true;
+  }
+  else {
+    return false;
+  }
 }
 
 export function getProducts() : Product[] {
