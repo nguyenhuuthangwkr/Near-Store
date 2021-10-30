@@ -6,14 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./assets/favicon.ico" />
     <link rel="apple-touch-icon" href="./assets/favicon.ico" />
-    <title>Welcome to NEAR</title>
+    <title>NEAR STORE</title>
     <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </head>
 
 <body>
@@ -35,21 +34,32 @@
     </main>
 
     <div id="signed-in-flow" style="display: none">
-        <button class="link" style="float: right" id="sign-out-button">
-      Sign out
-    </button>
-        <main>
-            <h1>
-                <label for="greeting" data-behavior="greeting" style="color: var(--secondary); border-bottom: 2px solid var(--secondary);">
-        </label>
-                <span data-behavior="account-id"></span>!
-                <p>Balance: <span id="account_balance"></span>
-                    <image src="https://s3-us-west-1.amazonaws.com/compliance-ico-af-us-west-1/production/token_profiles/logos/original/9d5/c43/cc-/9d5c43cc-e232-4267-aa8a-8c654a55db2d-1608222929-b90bbe4696613e2faeb17d48ac3aa7ba6a83674a.png" width="30"></image>
-                </p>
-            </h1>
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <a class="navbar-brand" href="#">NEAR STORE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <span data-behavior="account-id"></span>
+                    </li>
+                    <li class="nav-item">
+                        <p> ----> Balance: <span id="account_balance"></span>
+                            <image src="https://s3-us-west-1.amazonaws.com/compliance-ico-af-us-west-1/production/token_profiles/logos/original/9d5/c43/cc-/9d5c43cc-e232-4267-aa8a-8c654a55db2d-1608222929-b90bbe4696613e2faeb17d48ac3aa7ba6a83674a.png" width="30"></image>
+                        </p>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <button class="link" style="float: right" id="sign-out-button">
+              Sign out
+            </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-            <br>
-        </main>
     </div>
 
     <div class="container pt-5">
@@ -187,16 +197,6 @@
         </div>
 
     </div>
-
-    <aside data-behavior="notification" style="display: none">
-        <a target="_blank" href="https://explorer.testnet.near.org/accounts/"></a>
-        called method: 'setGreeting' in contract:
-        <a target="_blank" href="https://explorer.testnet.near.org/accounts/"></a>
-        <footer>
-            <div>✔ Succeeded</div>
-            <div>Just now</div>
-        </footer>
-    </aside>
 
     <script src="./index.js"></script>
     <script src="./store.js"></script>
